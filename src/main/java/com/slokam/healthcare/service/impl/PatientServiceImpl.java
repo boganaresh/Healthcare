@@ -60,6 +60,7 @@ public class PatientServiceImpl implements IPatientService{
 	public List<Patient> getAllPatients() {
 		LOGGER.trace("Entered in to getAllPatients");
 		List<Patient> patientList =  patientRepo.findAll();
+		LOGGER.debug("Get All Data:"+patientList);
 		LOGGER.trace("Exit from getAllPatients");
 		return patientList;
 	}

@@ -61,8 +61,9 @@ public class PatientController {
 		LOGGER.trace("Entered in to patientSearchByNameAndEmail");
 		LOGGER.debug("User Search Data by Name & Email"+name+"===="+email);
 		List<Patient> patientList = patientService.patientSearchByNameAndEmail(name, email);
-		LOGGER.trace("User Search Data:"+patientList);
+		LOGGER.debug("User Search Data:"+patientList);
 		patientList.forEach(e -> System.out.println(e.getName()));
+		LOGGER.info("User Search Data:"+patientList);
 		LOGGER.trace("Exit from patientSearchByNameAndEmail");
 		return new ResponseEntity<>(patientList,HttpStatus.OK);
 	}
@@ -71,7 +72,8 @@ public class PatientController {
 	public ResponseEntity<List<Patient>> getAllPatients(){
 		LOGGER.trace("Entered in to getAllPatients");
 		List<Patient> patientList = patientService.getAllPatients();
-		LOGGER.trace("Exit from getAllPatients"+patientList);
+		LOGGER.debug("User Got All Data:"+patientList);
+		LOGGER.trace("Exit from getAllPatients");
 		return ResponseEntity.ok(patientList);
 	}
 	
