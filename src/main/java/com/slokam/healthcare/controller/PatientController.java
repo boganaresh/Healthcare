@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.slokam.healthcare.entity.Patient;
+import com.slokam.healthcare.exception.HealthCareException;
 import com.slokam.healthcare.pojo.PatientSearchPojo;
 import com.slokam.healthcare.service.IPatientService;
 import com.slokam.healthcare.util.NullCheckForPatient;
@@ -123,7 +124,7 @@ public class PatientController {
 	};
 	
 	@PostMapping("/saveImage")
-	public ResponseEntity<String> savePatientImage(MultipartFile patientImage){
+	public ResponseEntity<String> savePatientImage(MultipartFile patientImage) throws HealthCareException{
 		LOGGER.trace("Entered in to savePatientImage");
 		LOGGER.debug("User Saving Image:"+patientImage);
 		String name = System.currentTimeMillis()+"-"+patientImage.getOriginalFilename();
@@ -134,7 +135,8 @@ public class PatientController {
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("Exception while uploading Image file.");
+			throw new HealthCareException("Specified file path is is not available.", e, 4567);
 		}
 		LOGGER.debug("User saved Image");
 		LOGGER.trace("Exit from savePatientImage");
