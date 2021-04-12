@@ -140,7 +140,7 @@ public class PatientController {
 		}
 		LOGGER.debug("User saved Image");
 		LOGGER.trace("Exit from savePatientImage");
-		return new ResponseEntity<String>(name,HttpStatus.OK);
+		return new ResponseEntity<String>(name, HttpStatus.OK);
 	}
 	
 }
